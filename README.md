@@ -22,6 +22,8 @@ It would speed things up if I got some help with the micro-controller software w
 There are a few folks already interested, and some possibility of collaboration is there.
 If you are interested in getting involved, please let me know and what area(s) you think you can hep with.
 
+I have added a folder with results from acoustic testing.  It includes the results of some initial DSP processing using MATLAB, courtesy of Frikk Solberg of Norway.
+
 Regards,
 
 Jim Trezzo
