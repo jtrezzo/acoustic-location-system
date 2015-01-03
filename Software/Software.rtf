@@ -1,0 +1,18 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww12240\viewh15840\viewkind1
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 Software folder\
+\
+TonePulse - simple program to generate pulse of square waves at 40KHz and send digital trigger to data acquisition program (start collecting points).  The trigger will be sent down the tether to the micro controller on the ROV.  The square wave will be input to the ultrasonic transmitter that drives the transducer.  This software will be modified to read the GPS data from a USB GPS device and record time and location when pulse is sent.\
+\
+adcspeedtest (3.1 and 3.2) - using Teensy 3.1 micro controller, can sample signal at > 250K samples per second.  adcspeedtest3.1 uses ADC library (ADC-master) from the Teensy website and collects as many points as can fit into memory.  adcspeedtest3.2 uses built in library for Teensy.  It only stores 500 points (can be modified to many more) and is triggered by a digital I/O.  Both programs are test software for collecting signal data remotely using a micro controller.  The plan is to put the analog receiver and Teensy 3.1 into the e-chassis on the ROV and interface with the BBB using the serial port.  The transducer will be attached to the ROV and connected to a pair of wires that go into the e-chassis.  The analog ultrasonic amplifier will be connected to the ADC on the Teensy.  I need to modify the circuit to provide a DC bias and over-voltage protection (ADC only goes from 0-3.3V, the signal is 40KHz AC)\
+\
+After each cycle of points collection the adcspeedtest program outputs the results as CSV data to the serial port.  I then cut and past the results into a text file for processing.\
+\
+PythonProgram - First cut at reading results from points collection into a graph.  This software can evolve to do some DSP analysis.  Once the algorithms are figured out (to measure the time for the acoustic pulse to arrive) this can be implemented on the micro controller and time-stamped results can be sent to the BBB (as a JSON string).  The OpenROV Node.js software (via a plugin) can send the results as part of the socket.io data stream to software on the surface which can do the calculation for location (surface transmitter has GPS location and time pulse was sent).\
+\
+First phase of this experiment is to acquire points data from on-board the ROV and modify electronics and software based on observations.\
+}
