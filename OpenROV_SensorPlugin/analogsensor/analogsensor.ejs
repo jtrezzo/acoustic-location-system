@@ -1,0 +1,31 @@
+
+  <link rel="import" href="components/paper-material/paper-material.html">
+  <link rel="import" href="components/paper-button/paper-button.html">
+<style>
+    paper-button {
+
+    }
+    paper-material{
+        margin-bottom:10px;
+        background-color:white;
+    }
+    .back-surface {
+        background-color:#f9f2f2;
+    }
+</style>
+<div class="back-surface">
+<paper-material  elevation="1">
+<fieldset>
+<legend>Support:</legend>    
+<paper-button raised id="dumpReport" on-tap="_onGenericButtonClick">Generic Button</paper-button>
+<orov-analogsensor event-emitter="{{cockpitEventEmitter}}"> </orov-analogsensor>
+</fieldset>
+</paper-material>
+<script>
+var template = $('#t')[0];
+template._onGenericButtonClick = function(){
+    alert("Generic button clicked");
+}
+</script>
+</div>
+

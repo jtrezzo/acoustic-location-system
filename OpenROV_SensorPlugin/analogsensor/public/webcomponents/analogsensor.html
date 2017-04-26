@@ -1,0 +1,51 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../orov-behaviors/orov-behavior.html">
+
+<dom-module name="orov-analogsensor">
+  <style>
+  </style>
+
+  <template>
+    <div><span on-click='handleClick'>{{__('AnalogSensor')}}</span>:<span>{{Name}}</span></div>
+  </template>
+
+  <script>
+    (function() {
+      Polymer({
+        is: "orov-analogsensor",
+        properties: {
+          Name: {
+            type: String,
+          }
+        },
+
+        //The oROVStandard behavior makes the widget eventEmitter enabled
+        behaviors: [namespace('behaviors').oROVStandard],
+
+        handleClick: function()
+        {
+          //TODO: Raise the click event through the dom
+          this.fire('analogsensor-clicked');
+
+          //the eventEmitter is added by oROVStandard
+          if (this.eventEmitter !== undefined)
+          {
+            this.eventEmitter.emit("plugin.analogsensor.sayHello");
+          }
+        },
+
+        //This function is called by the oROVStandard behavior
+        registerEmitterHandlers: function(emitter){
+          var self = this;
+
+          //For subscribing to changes on state information
+          emitter.withHistory.on('plugin.analogsensor.settingsChange',function(settings)
+          {
+            self.Name = settings.firstName;
+          });
+        }
+      })
+    })();
+  </script>
+
+</dom-module>
