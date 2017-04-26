@@ -1,0 +1,7 @@
+OpenROV Sensor Plug-in
+
+OpenROV software includes a component plug-in architecture with several message buses if-you-will at each layer.  My sensor system is an independent sub-system with it's own micro-controller and a serial connection to the node server on the BBB or Raspberry Pi on the Trident.  For the Trident the serial connection will be over wi-fi since the unit is sealed, but the plug-in should be very similar.  I think this pattern of a serial-link to a plug-in will be a common form of integration for OpenROV, it is worth while to develop a documented sample that can be adopted and re-used by others.
+
+I am using my plug-in as a development tool at the moment to get raw sensor data from the transducer to the OpenROV stack.  I will use that data to develop the signal processing software that will eventually run on the micro-controller.  So for now I have some communications (tell the sensor system to collect data points and send it as JSON messages to the plug-in) and will save the data as tagged files on the BBB/linux system.  I will need some UI/web components to control this remotely when the ROV is in the water.  I also need to capture some of the status data from the ROV message buss so I know what the depth/temp and time was when the data was captured.  I need to capture data-sets from many locations to refine/develop location based algorithms for ROV positioning.
+
+
